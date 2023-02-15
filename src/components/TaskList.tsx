@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { updateTask, deleteTask } from "../features/task/taskSlice";
+import { Grid } from "./styles/Grid.styled";
+import { List } from "./styles/List.styled";
 
 import TaskCard from "./TaskCard";
 
@@ -32,8 +34,8 @@ export default function TaskList() {
 
   return (
     <>
-      <div className='grid'>
-        <div className='box'>
+      <Grid>
+        <List>
           <h2>Open Tasks</h2>
 
           {openTasks.map((task, index) => (
@@ -49,9 +51,9 @@ export default function TaskList() {
               />
             </div>
           ))}
-        </div>
+        </List>
 
-        <div className='box'>
+        <List>
           <h2>Closed Tasks</h2>
 
           {closedTasks.map((task, index) => (
@@ -67,8 +69,8 @@ export default function TaskList() {
               />
             </div>
           ))}
-        </div>
-      </div>
+        </List>
+      </Grid>
     </>
   );
 }

@@ -1,15 +1,21 @@
+import { Wrapper } from "./components/styles/Wrapper.styled";
+import GlobalStyles from "./components/styles/Global";
+
 import AddTask from "./components/AddTask";
+import TaskList from "./components/TaskList";
 
 import "./App.css";
-import TaskList from "./components/TaskList";
 
 function App() {
   return (
-    <div className='App'>
-      Orel Code
-      <AddTask />
-      <TaskList />
-    </div>
+    <>
+      <GlobalStyles />
+
+      <Wrapper>
+        <AddTask />
+        <TaskList />
+      </Wrapper>
+    </>
   );
 }
 

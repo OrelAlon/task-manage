@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledCard } from "./styles/Card.styled";
 
 type TaskCardProps = {
   name: string;
@@ -43,8 +44,8 @@ export default function TaskCard({
   const handleToggleOpen = () => onToggleOpen(id);
 
   return (
-    <div
-      className={open ? "task-item open" : "task-item close"}
+    <StyledCard
+      // className={open ? "task-item open" : "task-item close"}
       ref={innerRef}
       draggable
     >
@@ -69,6 +70,6 @@ export default function TaskCard({
       <div className='delete' onClick={handleDelete}>
         X
       </div>
-    </div>
+    </StyledCard>
   );
 }
