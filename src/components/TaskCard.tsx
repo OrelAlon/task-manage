@@ -8,6 +8,7 @@ type TaskCardProps = {
   innerRef?: React.RefObject<HTMLDivElement>;
   onUpdate: (id: string, value: string) => void;
   onDelete: (id: string) => void;
+  onToggleOpen: (id: string) => void;
 };
 
 export default function TaskCard({
@@ -17,6 +18,7 @@ export default function TaskCard({
   innerRef,
   onUpdate,
   onDelete,
+  onToggleOpen,
 }: TaskCardProps) {
   const [editing, setEditing] = React.useState(false);
   const [inputValue, setInputValue] = React.useState(name);
@@ -38,12 +40,17 @@ export default function TaskCard({
     }
   };
 
+  const handleToggleOpen = () => onToggleOpen(id);
+
   return (
     <div
       className={open ? "task-item open" : "task-item close"}
       ref={innerRef}
       draggable
     >
+      <div className='toggle' onClick={handleToggleOpen}>
+        {open ? "close" : "open"}
+      </div>
       {editing ? (
         <input type='text' value={inputValue} onChange={handleInputChange} />
       ) : (

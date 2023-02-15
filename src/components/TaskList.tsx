@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
 import { updateTask, deleteTask } from "../features/task/taskSlice";
+
 import TaskCard from "./TaskCard";
 
 export default function TaskList() {
@@ -20,6 +21,15 @@ export default function TaskList() {
     dispatch(deleteTask(id));
   };
 
+  const handleToggleOpen = (id: string) => {
+    dispatch(
+      updateTask({
+        id,
+        changes: { open: !tasks.find((task) => task.id === id)?.open },
+      })
+    );
+  };
+
   return (
     <>
       <div className='grid'>
@@ -35,6 +45,7 @@ export default function TaskList() {
                 index={index}
                 onUpdate={handleUpdate}
                 onDelete={handleDelete}
+                onToggleOpen={handleToggleOpen}
               />
             </div>
           ))}
@@ -52,6 +63,7 @@ export default function TaskList() {
                 index={index}
                 onUpdate={handleUpdate}
                 onDelete={handleDelete}
+                onToggleOpen={handleToggleOpen}
               />
             </div>
           ))}
