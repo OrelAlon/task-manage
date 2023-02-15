@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../app/store";
+import { updateTask, deleteTask } from "../features/task/taskSlice";
 import TaskCard from "./TaskCard";
 
 export default function TaskList() {
@@ -10,6 +11,14 @@ export default function TaskList() {
   const closedTasks = tasks.filter((task) => !task.open);
 
   console.log(openTasks);
+
+  const handleUpdate = (id: string, value: string) => {
+    dispatch(updateTask({ id, changes: { value } }));
+  };
+
+  const handleDelete = (id: string) => {
+    dispatch(deleteTask(id));
+  };
 
   return (
     <>
@@ -24,6 +33,8 @@ export default function TaskList() {
                 id={task.id}
                 open={task.open}
                 index={index}
+                onUpdate={handleUpdate}
+                onDelete={handleDelete}
               />
             </div>
           ))}
@@ -39,6 +50,8 @@ export default function TaskList() {
                 id={task.id}
                 open={task.open}
                 index={index}
+                onUpdate={handleUpdate}
+                onDelete={handleDelete}
               />
             </div>
           ))}
