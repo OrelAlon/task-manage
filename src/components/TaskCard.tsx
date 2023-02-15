@@ -1,16 +1,35 @@
 import React from "react";
-import { StyledCard } from "./styles/Card.styled";
+import styled from "styled-components";
+import { Trash, Pencil } from "tabler-icons-react";
 
 type TaskCardProps = {
   name: string;
   id: string;
-  open: boolean;
+  open?: boolean;
   index: number;
+  isOpen?: boolean;
   innerRef?: React.RefObject<HTMLDivElement>;
   onUpdate: (id: string, value: string) => void;
   onDelete: (id: string) => void;
   onToggleOpen: (id: string) => void;
 };
+
+interface Props {
+  isOpen?: boolean;
+}
+const StyledCard = styled.div<Props>`
+  display: flex;
+  justify-content: space-between;
+  outline: none;
+  border-bottom: 1px dotted #666;
+  overflow: hidden;
+  font-size: 1.5rem;
+  width: 100%;
+  margin-right: 10px;
+  div:nth-child(2) {
+    text-decoration: ${({ isOpen }) => (isOpen ? "none" : "line-through")};
+  }
+`;
 
 export default function TaskCard({
   name,
@@ -48,27 +67,23 @@ export default function TaskCard({
       // className={open ? "task-item open" : "task-item close"}
       ref={innerRef}
       draggable
+      isOpen={open}
     >
-      <div className='toggle' onClick={handleToggleOpen}>
-        {open ? "close" : "open"}
-      </div>
+      <div onClick={handleToggleOpen}> {open ? "🔲" : "✅"}</div>
       {editing ? (
         <input type='text' value={inputValue} onChange={handleInputChange} />
       ) : (
-        <div className='name' onClick={handleTaskClick}>
-          {name}
-        </div>
+        <div onClick={handleTaskClick}>{name}</div>
       )}
       <div
         className='update'
         onClick={editing ? handleUpdate : handleTaskClick}
       >
-        {editing ? "save " : "edit"}
+        {editing ? "💾" : <Pencil size={32} />}
       </div>
-      <div className='update'></div>
 
       <div className='delete' onClick={handleDelete}>
-        X
+        <Trash size={32} />
       </div>
     </StyledCard>
   );
