@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addTask } from "../features/task/taskSlice";
 import { nanoid } from "@reduxjs/toolkit";
-import { Input } from "./styles/Input.styled";
+import { VscDiffAdded } from "react-icons/vsc";
 
 const AddTask = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const AddTask = () => {
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
       />
-      <button onClick={handleAddTask}>+</button>
+      <VscDiffAdded onClick={handleAddTask} size={34} />
     </div>
   );
 };

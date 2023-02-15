@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Trash, Pencil } from "tabler-icons-react";
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { FiEdit3 } from "react-icons/fi";
+import {
+  MdOutlineCheckBox,
+  MdOutlineCheckBoxOutlineBlank,
+} from "react-icons/md";
 
 type TaskCardProps = {
   name: string;
@@ -76,21 +81,24 @@ export default function TaskCard({
 
   return (
     <StyledCard ref={innerRef} draggable isOpen={open}>
-      <div className='task-item-right'>
-        <div onClick={handleToggleOpen}> {open ? "🔲" : "✅"}</div>
+      <div>
+        <div onClick={handleToggleOpen}>
+          {" "}
+          {open ? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
+        </div>
         {editing ? (
           <input type='text' value={inputValue} onChange={handleInputChange} />
         ) : (
           <div onClick={handleTaskClick}>{name}</div>
         )}
       </div>
-      <div className='task-item-left'>
+      <div>
         <div onClick={editing ? handleUpdate : handleTaskClick}>
-          {editing ? "💾" : <Pencil size={32} />}
+          {editing ? "💾" : <FiEdit3 />}
         </div>
 
         <div onClick={handleDelete}>
-          <Trash size={32} />
+          <MdOutlineDeleteForever />
         </div>
       </div>
     </StyledCard>

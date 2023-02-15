@@ -14,4 +14,8 @@ input {
   /* color: #fff; */
   background: transparent;
   -webkit-font-smoothing: antialiased;
+  text-align: center;
+}
+input:placeholder-shown {
+  text-align: center;
 }
