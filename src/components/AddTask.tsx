@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addTask } from "../features/task/taskSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { Input } from "./styles/Input.styled";
 
 const AddTask = () => {
   const dispatch = useDispatch();

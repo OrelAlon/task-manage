@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: rgb(52, 51, 50);
+    background: rgb(52, 51, 51);
     font-family: 'Poppins', sans-serif;
     font-size: 1.15em;
     margin: auto;
