@@ -10,8 +10,10 @@ interface TaskState {
   tasks: Task[];
 }
 
+// Check if there is saved data in localStorage
+const savedTasks = localStorage.getItem("tasks");
 const initialState: TaskState = {
-  tasks: [],
+  tasks: savedTasks ? JSON.parse(savedTasks) : [],
 };
 
 export const taskSlice = createSlice({
@@ -20,6 +22,8 @@ export const taskSlice = createSlice({
   reducers: {
     addTask: (state, action: PayloadAction<Task>) => {
       state.tasks.push(action.payload);
+      // Save the new state to localStorage
+      localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     updateTask: (
       state,
@@ -33,12 +37,16 @@ export const taskSlice = createSlice({
           ...state.tasks[index],
           ...action.payload.changes,
         };
+        // Save the new state to localStorage
+        localStorage.setItem("tasks", JSON.stringify(state.tasks));
       }
     },
     deleteTask: (state, action: PayloadAction<string>) => {
       const index = state.tasks.findIndex((task) => task.id === action.payload);
       if (index !== -1) {
         state.tasks.splice(index, 1);
+        // Save the new state to localStorage
+        localStorage.setItem("tasks", JSON.stringify(state.tasks));
       }
     },
   },

@@ -28,6 +28,18 @@ const StyledCard = styled.div<Props>`
   margin-right: 10px;
   div:nth-child(2) {
     text-decoration: ${({ isOpen }) => (isOpen ? "none" : "line-through")};
+    color: ${({ isOpen }) => (isOpen ? "none" : "rgb(192, 83, 83)")};
+    margin-right: 10px;
+  }
+  div:nth-child(1) {
+    display: flex;
+  }
+  div:nth-child(2) {
+    display: flex;
+    align-items: center;
+  }
+  div.name {
+    margin-right: 10px;
   }
 `;
 
@@ -63,27 +75,23 @@ export default function TaskCard({
   const handleToggleOpen = () => onToggleOpen(id);
 
   return (
-    <StyledCard
-      // className={open ? "task-item open" : "task-item close"}
-      ref={innerRef}
-      draggable
-      isOpen={open}
-    >
-      <div onClick={handleToggleOpen}> {open ? "🔲" : "✅"}</div>
-      {editing ? (
-        <input type='text' value={inputValue} onChange={handleInputChange} />
-      ) : (
-        <div onClick={handleTaskClick}>{name}</div>
-      )}
-      <div
-        className='update'
-        onClick={editing ? handleUpdate : handleTaskClick}
-      >
-        {editing ? "💾" : <Pencil size={32} />}
+    <StyledCard ref={innerRef} draggable isOpen={open}>
+      <div className='task-item-right'>
+        <div onClick={handleToggleOpen}> {open ? "🔲" : "✅"}</div>
+        {editing ? (
+          <input type='text' value={inputValue} onChange={handleInputChange} />
+        ) : (
+          <div onClick={handleTaskClick}>{name}</div>
+        )}
       </div>
+      <div className='task-item-left'>
+        <div onClick={editing ? handleUpdate : handleTaskClick}>
+          {editing ? "💾" : <Pencil size={32} />}
+        </div>
 
-      <div className='delete' onClick={handleDelete}>
-        <Trash size={32} />
+        <div onClick={handleDelete}>
+          <Trash size={32} />
+        </div>
       </div>
     </StyledCard>
   );

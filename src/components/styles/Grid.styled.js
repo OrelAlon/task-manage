@@ -5,5 +5,5 @@ export const Grid = styled.div`
   padding: 2rem 2rem;
   text-align: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;
