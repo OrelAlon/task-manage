@@ -47,9 +47,7 @@ function App() {
                 )}
               </ActionIcon>
             </header>
-
             <GlobalStyles />
-
             <AddTask />
             <TaskList />
           </MantineProvider>

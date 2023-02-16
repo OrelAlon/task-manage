@@ -9,7 +9,7 @@ export const InputDiv = styled.div`
     margin: 0;
     border: none;
     border-radius: 0;
-    width: 95%;
+    width: 70%;
     padding: 10px;
     float: left;
     font-size: 16px;

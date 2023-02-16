@@ -62,8 +62,6 @@ export default function TaskCard({
     setEditing(false);
   };
 
-  const handleDelete = () => onDelete(id);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -74,12 +72,10 @@ export default function TaskCard({
     }
   };
 
-  const handleToggleOpen = () => onToggleOpen(id);
-
   return (
     <StyledCard ref={innerRef} draggable isOpen={open}>
       <div>
-        <div onClick={handleToggleOpen}>
+        <div onClick={() => onToggleOpen(id)}>
           {" "}
           {open ? (
             <MdOutlineCheckBoxOutlineBlank size={30} />
@@ -96,16 +92,12 @@ export default function TaskCard({
       <div>
         {open && (
           <div onClick={editing ? handleUpdate : handleTaskClick}>
-            {editing ? (
-              <BiSave size={30} />
-            ) : (
-              <FiEdit3 color='black' size={30} />
-            )}
+            {editing ? <BiSave size={30} /> : <FiEdit3 size={30} />}
           </div>
         )}
 
-        <div onClick={handleDelete}>
-          <MdOutlineDeleteForever color='black' size={30} />
+        <div onClick={() => onDelete(id)}>
+          <MdOutlineDeleteForever size={30} />
         </div>
       </div>
     </StyledCard>
