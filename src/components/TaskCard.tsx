@@ -31,10 +31,9 @@ const StyledCard = styled.div<Props>`
   overflow: hidden;
   font-size: 1.5rem;
   width: 100%;
-  margin-right: 10px;
+  margin: 20px 10px;
   div:nth-child(2) {
     text-decoration: ${({ isOpen }) => (isOpen ? "none" : "line-through")};
-    color: ${({ isOpen }) => (isOpen ? "none" : "rgb(192, 83, 83)")};
   }
   div:nth-child(1) {
     display: flex;
@@ -95,9 +94,15 @@ export default function TaskCard({
         )}
       </div>
       <div>
-        <div onClick={editing ? handleUpdate : handleTaskClick}>
-          {editing ? <BiSave size={30} /> : <FiEdit3 color='black' size={30} />}
-        </div>
+        {open && (
+          <div onClick={editing ? handleUpdate : handleTaskClick}>
+            {editing ? (
+              <BiSave size={30} />
+            ) : (
+              <FiEdit3 color='black' size={30} />
+            )}
+          </div>
+        )}
 
         <div onClick={handleDelete}>
           <MdOutlineDeleteForever color='black' size={30} />

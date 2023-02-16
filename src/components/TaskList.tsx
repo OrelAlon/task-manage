@@ -13,8 +13,6 @@ export default function TaskList() {
   const openTasks = tasks.filter((task) => task.open);
   const closedTasks = tasks.filter((task) => !task.open);
 
-  console.log(openTasks);
-
   const handleUpdate = (id: string, value: string) => {
     dispatch(updateTask({ id, changes: { value } }));
   };

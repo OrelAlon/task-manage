@@ -1,16 +1,22 @@
 import styled from "styled-components";
 
-export const Input = styled.div`
-  outline: none;
-  border-bottom: 1px dotted #666;
-  border-radius: 0;
-  padding: 0 0 5px;
-  width: 100%;
-  height: 50px;
-  font-family: inherit;
-  font-size: 1.5rem;
-  font-weight: 300;
-  /* color: #fff; */
-  background: transparent;
-  -webkit-font-smoothing: antialiased;
+export const InputDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 95%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+    border-bottom: 1px solid black;
+    text-align: center;
+  }
+  input:placeholder-shown {
+    text-align: center;
+  }
 `;
