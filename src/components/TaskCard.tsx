@@ -6,6 +6,7 @@ import {
   MdOutlineCheckBox,
   MdOutlineCheckBoxOutlineBlank,
 } from "react-icons/md";
+import { BiSave } from "react-icons/bi";
 
 type TaskCardProps = {
   name: string;
@@ -34,17 +35,14 @@ const StyledCard = styled.div<Props>`
   div:nth-child(2) {
     text-decoration: ${({ isOpen }) => (isOpen ? "none" : "line-through")};
     color: ${({ isOpen }) => (isOpen ? "none" : "rgb(192, 83, 83)")};
-    margin-right: 10px;
   }
   div:nth-child(1) {
     display: flex;
+    margin-right: 10px;
   }
   div:nth-child(2) {
     display: flex;
     align-items: center;
-  }
-  div.name {
-    margin-right: 10px;
   }
 `;
 
@@ -84,7 +82,11 @@ export default function TaskCard({
       <div>
         <div onClick={handleToggleOpen}>
           {" "}
-          {open ? <MdOutlineCheckBoxOutlineBlank /> : <MdOutlineCheckBox />}
+          {open ? (
+            <MdOutlineCheckBoxOutlineBlank size={30} />
+          ) : (
+            <MdOutlineCheckBox size={30} />
+          )}
         </div>
         {editing ? (
           <input type='text' value={inputValue} onChange={handleInputChange} />
@@ -94,11 +96,11 @@ export default function TaskCard({
       </div>
       <div>
         <div onClick={editing ? handleUpdate : handleTaskClick}>
-          {editing ? "💾" : <FiEdit3 />}
+          {editing ? <BiSave size={30} /> : <FiEdit3 color='black' size={30} />}
         </div>
 
         <div onClick={handleDelete}>
-          <MdOutlineDeleteForever />
+          <MdOutlineDeleteForever color='black' size={30} />
         </div>
       </div>
     </StyledCard>
